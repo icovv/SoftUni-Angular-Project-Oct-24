@@ -9,6 +9,7 @@ import { RegisterComponent } from './user/register/register.component';
 import { LoginComponent } from './user/login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { DetailsComponent } from './details/details.component';
+import { EditComponent } from './edit/edit.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: "/home", pathMatch: "full"},
@@ -16,7 +17,8 @@ export const routes: Routes = [
 
     {path: 'catalog', children:[
         {path: '', component: CatalogComponent},
-        {path: ':carId', component: DetailsComponent}
+        {path: ':carId', component: DetailsComponent},
+        {path: 'edit/:carId', component:EditComponent}
     ]},
     {path: 'list', component: ListYourCarComponent},
     {path: 'search', component: SearchComponent},
