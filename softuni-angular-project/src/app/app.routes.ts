@@ -7,6 +7,7 @@ import { ProfileComponent } from './user/profile/profile.component';
 import { ContactComponent } from './contact/contact.component';
 import { RegisterComponent } from './user/register/register.component';
 import { LoginComponent } from './user/login/login.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: "/home", pathMatch: "full"},
@@ -19,5 +20,8 @@ export const routes: Routes = [
     
     {path: 'profile', component: ProfileComponent},
     {path: 'register', component: RegisterComponent},
-    {path: 'login', component: LoginComponent}
+    {path: 'login', component: LoginComponent},
+
+    {path: "404", component: NotFoundComponent},
+    {path: "**", redirectTo: "/404" }
 ];
