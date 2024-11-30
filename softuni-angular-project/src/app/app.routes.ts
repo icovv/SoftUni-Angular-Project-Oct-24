@@ -5,6 +5,7 @@ import { ListYourCarComponent } from './list-your-car/list-your-car.component';
 import { SearchComponent } from './search/search.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { ContactComponent } from './contact/contact.component';
+import { RegisterComponent } from './user/register/register.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: "/home", pathMatch: "full"},
@@ -15,5 +16,6 @@ export const routes: Routes = [
     {path: 'search', component: SearchComponent},
     {path: 'contacts', component:ContactComponent},
     
-    {path: 'profile', component: ProfileComponent}
+    {path: 'profile', component: ProfileComponent},
+    {path: 'register', component: RegisterComponent}
 ];
