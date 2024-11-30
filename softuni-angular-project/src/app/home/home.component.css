@@ -1,0 +1,35 @@
+main{
+    background-image: url(images/nackground.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+.home-text {
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 80px;
+  }
+  
+  .home-text h1 {
+    font-size: 88px;
+    text-align: center;
+    color: white;
+    margin: 0px ;
+    padding-top: 200px;
+  }
+  
+  .catalog-btn-home {
+    text-align: center;
+    font-size: 30px;
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    color: black;
+    font-weight: bold;
+    background-color: #857776;
+  }
+  .catalog-btn-home:hover{
+    color: #FFFDFC;
+  }

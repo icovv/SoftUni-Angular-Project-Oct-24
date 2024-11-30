@@ -1,0 +1,34 @@
+header
+{ background-color: #857776; }
+
+header .Header
+{  display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    margin:0px auto;
+}
+
+header .Menu{
+    font:15px Century Gothic;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+}
+
+
+header .Menu li a
+{ padding:0 10px;
+  text-decoration: none;
+  color: #FFFDFC;
+  cursor: pointer;
+ }
+
+.logo {
+    width: 70px;
+    cursor: pointer;
+}
+  
+header .Menu li:hover a
+{ color: #DFD4C8; }

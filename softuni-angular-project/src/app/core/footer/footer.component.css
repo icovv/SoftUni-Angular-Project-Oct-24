@@ -1,0 +1,19 @@
+.Footer
+{ background-color: #857776;
+  /*height: 150px;*/
+  width:100%;
+  position: fixed;
+  bottom: 0;
+    
+}
+
+.Logo
+{ 
+    width: 100%;
+    font: 20px/1.2 Verdana, Arial, Helvetica, sans-serif;
+    color: #FFFDFC;
+    text-align: center;
+}
+footer p {
+    margin: 5px 0px;
+}
