@@ -6,6 +6,7 @@ import { SearchComponent } from './search/search.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { ContactComponent } from './contact/contact.component';
 import { RegisterComponent } from './user/register/register.component';
+import { LoginComponent } from './user/login/login.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: "/home", pathMatch: "full"},
@@ -17,5 +18,6 @@ export const routes: Routes = [
     {path: 'contacts', component:ContactComponent},
     
     {path: 'profile', component: ProfileComponent},
-    {path: 'register', component: RegisterComponent}
+    {path: 'register', component: RegisterComponent},
+    {path: 'login', component: LoginComponent}
 ];
