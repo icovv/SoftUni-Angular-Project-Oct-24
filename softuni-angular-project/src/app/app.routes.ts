@@ -8,12 +8,16 @@ import { ContactComponent } from './contact/contact.component';
 import { RegisterComponent } from './user/register/register.component';
 import { LoginComponent } from './user/login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { DetailsComponent } from './details/details.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: "/home", pathMatch: "full"},
     {path: "home", component: HomeComponent},
 
-    {path: 'catalog', component: CatalogComponent},
+    {path: 'catalog', children:[
+        {path: '', component: CatalogComponent},
+        {path: ':carId', component: DetailsComponent}
+    ]},
     {path: 'list', component: ListYourCarComponent},
     {path: 'search', component: SearchComponent},
     {path: 'contacts', component:ContactComponent},
