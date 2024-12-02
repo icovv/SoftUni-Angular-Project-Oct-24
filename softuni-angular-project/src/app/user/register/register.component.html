@@ -1,13 +1,22 @@
 <main>
+    @if (errorContainer.length > 0) {
+        <div class="error-container">
+            @for (item of errorContainer; track $index) {
+                <div class="error-message" (animationend)="onAnimationEnd()">{{item}}</div>
+            }
+        </div>
+    }
     <div class="register-form">
         <h1>Registration Form</h1>
-        <form action="#" method="">
-            <label>Email</label>
-            <input type="text" name="" >
-            <label>Password</label>
-            <input type="password" name="" >
-            <label>Repeat Password</label>
-            <input type="password" name="" >
+        <form [formGroup]="form" (ngSubmit)="register()">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" formControlName = "email" required >
+            <div formGroupName = "passGroup">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" formControlName = "password" >
+            <label for="repass">Repeat Password</label>
+            <input type="password" name="repass" id="repass" formControlName = "repass" >
+            </div>
             <input type="submit" value="Submit">
         </form>
     </div>
