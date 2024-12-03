@@ -1,12 +1,14 @@
 <main>
-    @if (errorContainer.length > 0) {
-        <!-- <div class="error-container">
-            @for (item of errorContainer; track $index) {
-                <div class="error-message" (animationend)="onAnimationEnd()">{{item}}</div>
-            }
-        </div> -->
-        <app-errors [errorContainer]="errorContainer" (changeEmitter)="onAnimationEnd($event)"></app-errors>
-    }
+    <div class="error-container">
+        @if (errorContainer.length > 0) {
+            <!-- <div class="error-container">
+                @for (item of errorContainer; track $index) {
+                    <div class="error-message" (animationend)="onAnimationEnd()">{{item}}</div>
+                }
+            </div> -->
+            <app-errors [errorContainer]="errorContainer" (changeEmitter)="onAnimationEnd($event)"></app-errors>
+        }
+    </div>
     <div class="register-form">
         <h1>Registration Form</h1>
         <form [formGroup]="form" (ngSubmit)="register()">

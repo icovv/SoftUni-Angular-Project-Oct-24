@@ -1,4 +1,5 @@
 <main>
+    <div class="error-container">
     @if (errorContainer.length > 0) {
         <!-- <div class="error-container">
             @for (item of errorContainer; track $index) {
@@ -7,6 +8,8 @@
         </div> -->
         <app-errors [errorContainer]="errorContainer" (changeEmitter)="onAnimationEnd($event)"></app-errors>
     }
+</div>
+
     <div class="login-form">
         <h1>Login Form</h1>
         <form [formGroup]="form" (ngSubmit)="login()">

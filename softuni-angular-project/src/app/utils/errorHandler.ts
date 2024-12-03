@@ -11,53 +11,63 @@ export function errorHandlerValidator(form: FormGroup):string[] | null{
     let colorErrors = form.get('color')?.errors;
     let imageErrors = form.get('image')?.errors;
     let descriptionErrors = form.get('description')?.errors;
-    
+
     if(brandErrors?.['required'] || yearErrors?.['required'] || modelErrors?.['required'] || capacityErrors?.['required'] || powerErrors?.['required'] || fuelErrors?.['required'] || colorErrors?.['required'] || imageErrors?.['required'] || descriptionErrors?.['required']){
         errors.push("All fields are required!");
         return errors;
     }
     if(brandErrors?.['pattern']){
-        errors.push("Please make sure to provide a valid brand name!")
+        errors.push("Please make sure to provide a valid brand name!");
+        form.get('brand')?.setValue(``);
     }
 
     if(yearErrors?.['pattern']){
-        errors.push("Please provide valid year!")
+        errors.push("Please provide valid year!");
+        form.get('year')?.setValue(``);
     }
     if(yearErrors?.['isInvalid']){
-        errors.push(yearErrors?.['isInvalid'])
+        errors.push(yearErrors?.['isInvalid']);
+        form.get('year')?.setValue(``);
     }
 
     if(capacityErrors?.['pattern']){
-        errors.push("Please provide valid capacity!")
+        errors.push("Please provide valid capacity!");
+        form.get('capacity')?.setValue(``);
     }
     if(capacityErrors?.['min']){
-        errors.push("Please make sure to provide a valid engine capacity!")
+        errors.push("Please make sure to provide a valid engine capacity!");
+        form.get('capacity')?.setValue(``);
     }
 
     if(powerErrors?.['pattern']){
-        errors.push("Please provide valid horse power!")
+        errors.push("Please provide valid horse power!");
+        form.get('power')?.setValue(``);
     }
 
     if(powerErrors?.['min']){
-        errors.push("Please make sure to provide a valid horse power!")
+        errors.push("Please make sure to provide a valid horse power!");
+        form.get('power')?.setValue(``);
     }
 
     if(colorErrors?.['pattern']){
-        errors.push("Please make sure to provide a valid color!")
+        errors.push("Please make sure to provide a valid color!");
+        form.get('color')?.setValue(``);
     }
 
     if(fuelErrors?.['isInvalid']){
-        errors.push(fuelErrors?.['isInvalid'])
+        errors.push(fuelErrors?.['isInvalid']);
+        form.get('fuel')?.setValue(``);
     }
 
     if(imageErrors?.['pattern']){
-        errors.push("Please make sure to provide a valid url!")
+        errors.push("Please make sure to provide a valid url!");
+        form.get('image')?.setValue(``);
     }
 
     if(descriptionErrors?.['minlength']){
-        errors.push("The description is too short!")
+        errors.push("The description is too short!");
+        form.get('description')?.setValue(``);
     }
-    console.log(errors);
     if(errors.length > 0){
         return errors;
     }
