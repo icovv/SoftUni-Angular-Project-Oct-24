@@ -10,9 +10,8 @@ export function errorHandlerValidator(form: FormGroup):string[] | null{
     let fuelErrors = form.get('fuel')?.errors;
     let colorErrors = form.get('color')?.errors;
     let imageErrors = form.get('image')?.errors;
-    console.log(form.get('brand')?.errors?.['pattern'] , "get me")
     let descriptionErrors = form.get('description')?.errors;
-    debugger
+    
     if(brandErrors?.['required'] || yearErrors?.['required'] || modelErrors?.['required'] || capacityErrors?.['required'] || powerErrors?.['required'] || fuelErrors?.['required'] || colorErrors?.['required'] || imageErrors?.['required'] || descriptionErrors?.['required']){
         errors.push("All fields are required!");
         return errors;

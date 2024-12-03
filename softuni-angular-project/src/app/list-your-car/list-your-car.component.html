@@ -1,4 +1,7 @@
 <main class="main">
+    @if (errorContainer && errorContainer.length > 0) {
+        <app-errors [errorContainer]="errorContainer" (changeEmitter)="onAnimationEnd($event)"></app-errors>
+    }
     <div class="form-container">
         <h1 class="header">List your car</h1>
         <form id="create-item-form" [formGroup]="form" (ngSubmit)="submit()">

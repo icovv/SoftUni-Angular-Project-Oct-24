@@ -3,16 +3,17 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { errorHandlerValidator } from '../utils/errorHandler';
 import { fuelValidator } from '../utils/fuel.validator';
 import { yearValidator } from '../utils/year.validator';
+import { ErrorsComponent } from '../core/errors/errors.component';
 
 @Component({
   selector: 'app-list-your-car',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ErrorsComponent],
   templateUrl: './list-your-car.component.html',
   styleUrl: './list-your-car.component.css'
 })
 export class ListYourCarComponent {
-  errorsContainer:string[] | null = [];
+  errorContainer:string[] | null = [];
   form = new FormGroup({
     brand: new FormControl("",[Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]),
     year: new FormControl("",[Validators.required, Validators.pattern(/\d+/), yearValidator()]),
@@ -24,11 +25,15 @@ export class ListYourCarComponent {
     image: new FormControl("",[  Validators.required, Validators.pattern(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g)]),
     description: new FormControl("",[ Validators.required, Validators.minLength(5)]),
   })
-
+  onAnimationEnd(data:boolean){
+    if(data){
+      this.errorContainer = [];
+      return;
+    }
+  }
   submit(){
 
-    this.errorsContainer = errorHandlerValidator(this.form);
-    console.log(this.errorsContainer)
-    this.errorsContainer = [];
+    this.errorContainer = errorHandlerValidator(this.form);
+    console.log(this.errorContainer)
   }
 }
