@@ -1,30 +1,30 @@
 <main class="main">
     <div class="form-container">
         <h1 class="header">List your car</h1>
-        <form id="create-item-form">
+        <form id="create-item-form" [formGroup]="form" (ngSubmit)="submit()">
             <div class="form-group">
                 <label for="car-brand">Car Brand</label>
-                <input type="text" id="brand" name="brand" value="" required >
+                <input type="text" id="brand" name="brand" value="" formControlName = "brand">
             </div>
             <div class="form-group">
                 <label for="year">Year</label>
-                <input type="number" id="year" name="year" value="" required>
+                <input type="number" id="year" name="year" value="" formControlName = 'year'>
             </div>
             <div class="form-group">
                 <label for="car-model">Car Model</label>
-                <input type="text" id="model" name="model" value="" required>
+                <input type="text" id="model" name="model" value="" formControlName = 'model'>
             </div>
             <div class="form-group">
                 <label for="engine-capacity">Engine Capacity</label>
-                <input type="number" id="capacity" name="capacity" value="" required >
+                <input type="number" id="capacity" name="capacity" value="" formControlName = 'capacity' >
             </div>
             <div class="form-group">
                 <label for="car-power">Horse Power</label>
-                <input type="number" id="power" name="power" value="" required>
+                <input type="number" id="power" name="power" value="" formControlName = 'power'>
             </div>
             <div >
                 <label for="fuel-type" >Fuel Type</label>
-                <select class="margni-bottom" id="fuel" name="fuel" value="" required >
+                <select class="margni-bottom" id="fuel" name="fuel" value="" formControlName = 'fuel' >
                     <option value="">---</option>
                     <option value="Petrol">Petrol</option>
                     <option value="Diesel">Diesel</option>
@@ -32,15 +32,15 @@
             </div>
             <div class="form-group">
                 <label for="color">Color</label>
-                <input type="text" id="color" name="color" value="" required >
+                <input type="text" id="color" name="color" value="" formControlName = 'color' >
             </div>
             <div class="form-group">
                 <label for="image-link">Image URL</label>
-                <input type="url" id="image" name="image" value="" required >
+                <input type="url" id="image" name="image" value="" formControlName = 'image' >
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea id="description" name="description" rows="4" value="" required ></textarea>
+                <textarea id="description" name="description" rows="4" value="" formControlName = 'description' ></textarea>
             </div>
             <button type="submit" class="button">List</button>
         </form>
