@@ -1,9 +1,14 @@
 <main>
-    <form class="example">
-        <input type="text" placeholder="Search..." name="search" value="">
+  <div class="error-container">
+    @if (errorContainer && errorContainer.length > 0) {
+        <app-errors [errorContainer]="errorContainer" (changeEmitter)="onAnimationEnd($event)"></app-errors>
+    }
+    </div>
+    <form class="example" [formGroup]="form" (ngSubmit)="submit()">
+        <input type="text" placeholder="Search..." name="search" id="search" formControlName = 'search' value="">
         <button type="submit" class="button" >Search</button>
-        <button type="submit" class="clearButton" >Clear</button>
-        <select class="dropdown" name='dropdown' value="">
+        <button type="button" class="clearButton" (click)="clear()" >Clear</button>
+        <select class="dropdown" name='dropdown' id="dropdown" formControlName = 'dropdown' value="">
             <option value="">---</option>
             <option value="carBrand">Brand</option>
             <option value="carModel">Model</option>
