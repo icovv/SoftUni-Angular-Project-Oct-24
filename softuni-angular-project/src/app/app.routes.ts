@@ -18,8 +18,8 @@ export const routes: Routes = [
     {path: 'catalog', children:[
         {path: '', component: CatalogComponent},
         {path: ':carId', component: DetailsComponent},
-        {path: 'edit/:carId', component:EditComponent}
     ]},
+    {path: 'edit/:carId', component:EditComponent},
     {path: 'list', component: ListYourCarComponent},
     {path: 'search', component: SearchComponent},
     {path: 'contacts', component:ContactComponent},
