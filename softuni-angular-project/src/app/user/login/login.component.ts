@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, ErrorHandler } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { emailValidator } from '../../utils/emailValidator.validator';
+import { ErrorsComponent } from '../../core/errors/errors.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule],
+  imports: [RouterLink, ReactiveFormsModule, ErrorsComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -17,9 +18,11 @@ form = new FormGroup({
   password: new FormControl('', [Validators.required, Validators.minLength(4)])
 })
 
-onAnimationEnd(): void{
-  this.errorContainer = [];
-  return;
+onAnimationEnd(data:boolean): void{
+  if(data == true){
+    this.errorContainer = [];
+    return;
+  }
 }
 
 login(){

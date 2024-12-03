@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component,} from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { passwordValidator } from '../../utils/password.validator';
 import { emailValidator } from '../../utils/emailValidator.validator';
+import { ErrorsComponent } from '../../core/errors/errors.component';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, ],
+  imports: [RouterLink, ReactiveFormsModule, ErrorsComponent ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -23,11 +24,12 @@ export class RegisterComponent{
 
   })
 
-  onAnimationEnd(): void{
-    this.errorContainer = [];
-    return;
+  onAnimationEnd(data:boolean): void{
+    if(data == true){
+      this.errorContainer = [];
+      return
+    }
   }
-
   register(){
     if(this.form.get('email')?.errors?.['emailValidator']){
       this.errorContainer.push(this.form.get('email')?.errors?.['emailValidator']);
