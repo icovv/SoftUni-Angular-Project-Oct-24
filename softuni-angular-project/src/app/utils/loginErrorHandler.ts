@@ -14,7 +14,7 @@ export function loginErrorHandler(form:FormGroup){
     if(email?.errors?.['emailValidator']){
         errorContainer.push(email?.errors?.['emailValidator']);
     }
-    if(password?.errors?.['required'] || password && (password.value.trim())){
+    if(password?.errors?.['required']){
         errorContainer.push("Your password is required!");
     }
     if (password?.errors?.['minlength'] || password && (password.value.trim().length < 4)){

@@ -10,12 +10,14 @@ export const appInterceptorInterceptor: HttpInterceptorFn = (req, next) => {
   }
   return next(req).pipe(
     catchError((err) => {
+      // console.log(`err from interceptor => ${err}`)
+
       console.log(`err from interceptor => ${JSON.stringify(err.message)}`)
       if(err.status == 0) {
         err.message = "The server is not responding. Please try again later!"
       }
       if(err.status == 403){
-        localStorage.removeItem('userData');
+        err.message = "Forbidden!"
       }
       if(err.status == 409){
         err.message = "Conflict has occured!"
