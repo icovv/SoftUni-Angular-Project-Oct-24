@@ -14,6 +14,9 @@ export const appInterceptorInterceptor: HttpInterceptorFn = (req, next) => {
       if(err.status == 0) {
         err.message = "The server is not responding. Please try again later!"
       }
+      if(err.status == 403){
+        localStorage.removeItem('userData');
+      }
       return throwError(() => err.message) 
     })
   )
