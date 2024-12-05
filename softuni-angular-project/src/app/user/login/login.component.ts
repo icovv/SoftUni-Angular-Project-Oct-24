@@ -4,6 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { emailValidator } from '../../utils/emailValidator.validator';
 import { ErrorsComponent } from '../../core/errors/errors.component';
 import { UserService } from '../../services/user.service';
+import { loginErrorHandler } from '../../utils/loginErrorHandler';
 
 @Component({
   selector: 'app-login',
@@ -29,25 +30,15 @@ onAnimationEnd(data:boolean): void{
 
   }
 login(){
-  if(this.form.get('email')?.errors?.['emailValidator']){
-    this.errorContainer.push(this.form.get('email')?.errors?.['emailValidator']);
-  }
-  if(this.form.get('password')?.errors?.['required']){
-    this.errorContainer.push("Your password is required!");
-  }
-  if (this.form.get('password')?.errors?.['minlength']){
-    this.errorContainer.push("Please make sure that your password is at least 4 characters long!");
-  }
 
-  if(this.errorContainer.length > 0){
-    this.form.get('password')?.reset();
+  this.errorContainer = loginErrorHandler(this.form)
+
+  if(this.errorContainer?.length > 0){
     return;
   }
-
   let email:string = this.form.get('email')?.value!;
   let password:string | number = this.form.get('password')?.value!;
-
-  this.userService.login(email,password).subscribe({
+  this.userService.login(email.trim(),password.trim()).subscribe({
     next: (data) => {
        this.router.navigate(['/catalog']);
        localStorage.setItem('userData',JSON.stringify(data))

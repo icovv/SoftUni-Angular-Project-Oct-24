@@ -14,7 +14,7 @@ import { registerErrorHandler } from '../../utils/registerErrorHandler';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent{
-  errorContainer:string[] | null= [];
+  errorContainer:string[]= [];
   form = new FormGroup({
     email: new FormControl('',[Validators.required, emailValidator()]),
     passGroup: new FormGroup({
@@ -38,17 +38,19 @@ export class RegisterComponent{
   register(){
     
     this.errorContainer = registerErrorHandler(this.form);
-
+    if (this.errorContainer.length > 0) {
+      return;
+    }
     let email:string = this.form.get('email')?.value!;
     let password:string | number = this.form.get('passGroup')?.get('password')?.value!;
 
-    this.userService.register(email,password).subscribe({
+    this.userService.register(email.trim(),password.trim()).subscribe({
       next: (data) => {
         this.router.navigate(['/catalog']);
         localStorage.setItem('userData',JSON.stringify(data))
       },
       error: (error) => {
-        this.errorContainer?.push(error)
+        this.errorContainer.push(error)
       }
     });
     

@@ -17,6 +17,9 @@ export const appInterceptorInterceptor: HttpInterceptorFn = (req, next) => {
       if(err.status == 403){
         localStorage.removeItem('userData');
       }
+      if(err.status == 409){
+        err.message = "Conflict has occured!"
+      }
       return throwError(() => err.message) 
     })
   )
