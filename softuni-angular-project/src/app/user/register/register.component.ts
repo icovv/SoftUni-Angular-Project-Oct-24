@@ -5,6 +5,7 @@ import { passwordValidator } from '../../utils/password.validator';
 import { emailValidator } from '../../utils/emailValidator.validator';
 import { ErrorsComponent } from '../../core/errors/errors.component';
 import { UserService } from '../../services/user.service';
+import { registerErrorHandler } from '../../utils/registerErrorHandler';
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -13,7 +14,7 @@ import { UserService } from '../../services/user.service';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent{
-  errorContainer:string[] = [];
+  errorContainer:string[] | null= [];
   form = new FormGroup({
     email: new FormControl('',[Validators.required, emailValidator()]),
     passGroup: new FormGroup({
@@ -36,27 +37,7 @@ export class RegisterComponent{
   }
   register(){
     
-    if(this.form.get('email')?.errors?.['emailValidator']){
-      this.errorContainer.push(this.form.get('email')?.errors?.['emailValidator']);
-    }
-
-    if(this.form.get('passGroup')?.errors?.['passwordValidator']){
-      this.errorContainer.push(this.form.get('passGroup')?.errors?.['passwordValidator']);
-    }
-
-    if(this.form.get('passGroup')?.get('password')?.errors?.['required'] || this.form.get('passGroup')?.get('password')?.errors?.['required']){
-      this.errorContainer.push("Both passwords are required!");
-    }
-
-    if(this.form.get('passGroup')?.get('password')?.errors?.['minlength'] || this.form.get('passGroup')?.get('password')?.errors?.['minlength']){
-      this.errorContainer.push("Please make sure that both passwords are at least 4 characters long!");
-    }
-    
-    if(this.errorContainer.length > 0){
-      this.form.get('passGroup')?.get('password')?.reset();
-      this.form.get('passGroup')?.get('repass')?.reset();
-      return;
-    }
+    this.errorContainer = registerErrorHandler(this.form);
 
     let email:string = this.form.get('email')?.value!;
     let password:string | number = this.form.get('passGroup')?.get('password')?.value!;
@@ -67,7 +48,7 @@ export class RegisterComponent{
         localStorage.setItem('userData',JSON.stringify(data))
       },
       error: (error) => {
-        this.errorContainer.push(error)
+        this.errorContainer?.push(error)
       }
     });
     
