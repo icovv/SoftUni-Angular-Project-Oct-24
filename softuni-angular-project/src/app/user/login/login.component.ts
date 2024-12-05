@@ -1,8 +1,9 @@
 import { Component, ErrorHandler } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { emailValidator } from '../../utils/emailValidator.validator';
 import { ErrorsComponent } from '../../core/errors/errors.component';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,9 @@ onAnimationEnd(data:boolean): void{
     return;
   }
 }
+  constructor(private userService: UserService, private router: Router){
 
+  }
 login(){
   if(this.form.get('email')?.errors?.['emailValidator']){
     this.errorContainer.push(this.form.get('email')?.errors?.['emailValidator']);
@@ -40,6 +43,16 @@ login(){
     this.form.get('password')?.reset();
     return;
   }
+
+  let email:string = this.form.get('email')?.value!;
+  let password:string | number = this.form.get('password')?.value!;
+
+  this.userService.login(email,password).subscribe({
+    next: (data) => {
+       this.router.navigate(['/catalog']);
+       localStorage.setItem('userData',JSON.stringify(data))
+      }, 
+    error:(err) => this.errorContainer.push(err)})
 
 }
 

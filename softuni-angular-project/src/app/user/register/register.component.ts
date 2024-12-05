@@ -1,9 +1,10 @@
 import { Component,} from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { passwordValidator } from '../../utils/password.validator';
 import { emailValidator } from '../../utils/emailValidator.validator';
 import { ErrorsComponent } from '../../core/errors/errors.component';
+import { UserService } from '../../services/user.service';
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -30,7 +31,11 @@ export class RegisterComponent{
       return
     }
   }
+  constructor(private userService: UserService, private router: Router){
+
+  }
   register(){
+    
     if(this.form.get('email')?.errors?.['emailValidator']){
       this.errorContainer.push(this.form.get('email')?.errors?.['emailValidator']);
     }
@@ -52,7 +57,21 @@ export class RegisterComponent{
       this.form.get('passGroup')?.get('repass')?.reset();
       return;
     }
-    console.log(this.form.get('passGroup'))
+
+    let email:string = this.form.get('email')?.value!;
+    let password:string | number = this.form.get('passGroup')?.get('password')?.value!;
+
+    this.userService.register(email,password).subscribe({
+      next: (data) => {
+        this.router.navigate(['/catalog']);
+        localStorage.setItem('userData',JSON.stringify(data))
+      },
+      error: (error) => {
+        this.errorContainer.push(error)
+      }
+    });
+    
+    
   }
 
 }
