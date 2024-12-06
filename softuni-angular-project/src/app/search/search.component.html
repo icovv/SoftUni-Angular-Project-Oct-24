@@ -16,27 +16,16 @@
             <option value="horsePowerLess">Less HP</option>
         </select>
     </form>
-    <div class="wrapper">     
-        <div class="card">
-        <img src="https://images.hgmsites.net/hug/2010-bmw-3-series-4-door-sedan-328i-rwd-angular-front-exterior-view_100237108_h.jpg" alt="Car Image" class= "car-image-url">
-        <h1 class="blk-clr">car.carBrand</h1>
-        <h3 class="blk-clr">Model: car.carModel</h3>
-        <h3 class="blk-clr">Horse Power: car.horsePower</h3>
-        <a routerLink="/catalog/1"><button class="button">Details</button></a>
-      </div>
-        <div class="card">
-        <img src="https://images.hgmsites.net/hug/2010-bmw-3-series-4-door-sedan-328i-rwd-angular-front-exterior-view_100237108_h.jpg" alt="Car Image" class= "car-image-url">
-        <h1 class="blk-clr">car.carBrand</h1>
-        <h3 class="blk-clr">Model: car.carModel</h3>
-        <h3 class="blk-clr">Horse Power: car.horsePower</h3>
-        <a routerLink="/catalog/1"><button class="button">Details</button></a>
-      </div>
-        <div class="card">
-        <img src="https://images.hgmsites.net/hug/2010-bmw-3-series-4-door-sedan-328i-rwd-angular-front-exterior-view_100237108_h.jpg" alt="Car Image" class= "car-image-url">
-        <h1 class="blk-clr">car.carBrand</h1>
-        <h3 class="blk-clr">Model: car.carModel</h3>
-        <h3 class="blk-clr">Horse Power: car.horsePower</h3>
-        <a routerLink="/catalog/1"><button class="button">Details</button></a>
-      </div>
+
+    @if (loading) {
+      <app-loader></app-loader>
+    }
+    
+    <div class="wrapper">
+      @if (cars.length > 0) {
+        @for (item of cars; track $index) {
+          <app-search-single-item [car]="item" [loggedIn]="isLoggedIn"></app-search-single-item>
+        }
+      } 
     </div>
 </main>
