@@ -6,11 +6,15 @@
                 <li><a routerLink="/catalog">Catalog</a></li>
                 <li><a routerLink="/list">List Your Car</a></li>
                 <li><a routerLink="/search">Search</a></li>
-                <li><a routerLink="/profile">Profile</a></li>
                 <li><a routerLink='/contacts'>Contacts</a></li>
-                <li><a routerLink="/register">Register</a></li>
-                <li><a routerLink="/login">Login</a></li>
-                <li><a routerLink="/logout" (click)="logoutFn()">Logout</a></li>
+                @if (!isUserLoged) {
+                    <li><a routerLink="/register">Register</a></li>
+                    <li><a routerLink="/login">Login</a></li>
+                }
+                @if (isUserLoged) {
+                    <li><a routerLink="/profile">Profile</a></li>
+                    <li><a routerLink="/logout" (click)="logoutFn()">Logout</a></li>
+                }
             </ul>
     </div>
 </header>

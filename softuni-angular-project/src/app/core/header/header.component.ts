@@ -10,6 +10,11 @@ import { UserService } from '../../services/user.service';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+
+  get isUserLoged(): boolean {
+    return this.userService.isLogged;
+  }
+
   constructor(private userService: UserService , private router: Router){
 
   }
