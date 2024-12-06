@@ -19,7 +19,6 @@ export class UserService {
     'Content-Type' : 'application/json'
   })
   get isLogged(): boolean {
-    console.log (this.user);
     return !!this.user;
   }
 

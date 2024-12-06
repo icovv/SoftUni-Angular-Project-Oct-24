@@ -10,6 +10,7 @@ import { LoginComponent } from './user/login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { DetailsComponent } from './details/details.component';
 import { EditComponent } from './edit/edit.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     {path: '', redirectTo: "/home", pathMatch: "full"},
@@ -17,16 +18,18 @@ export const routes: Routes = [
 
     {path: 'catalog', children:[
         {path: '', component: CatalogComponent},
-        {path: ':carId', component: DetailsComponent},
+        {path: ':carId', 
+        component: DetailsComponent,
+        canActivate:[authGuard]},
     ]},
-    {path: 'edit/:carId', component:EditComponent},
+    {path: 'edit/:carId', component:EditComponent, canActivate:[authGuard]},
     {path: 'list', component: ListYourCarComponent},
     {path: 'search', component: SearchComponent},
     {path: 'contacts', component:ContactComponent},
     
-    {path: 'profile', component: ProfileComponent},
-    {path: 'register', component: RegisterComponent},
-    {path: 'login', component: LoginComponent},
+    {path: 'profile', component: ProfileComponent, canActivate:[authGuard]},
+    {path: 'register', component: RegisterComponent, canActivate:[authGuard]},
+    {path: 'login', component: LoginComponent, canActivate:[authGuard]},
 
     {path: "404", component: NotFoundComponent},
     {path: "**", redirectTo: "/404" }
