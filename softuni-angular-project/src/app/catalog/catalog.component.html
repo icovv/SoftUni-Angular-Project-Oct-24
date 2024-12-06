@@ -1,35 +1,25 @@
     <main>
+      <div class="error-container">
+        @if (errorContainer.length > 0) {
+            <!-- <div class="error-container">
+                @for (item of errorContainer; track $index) {
+                    <div class="error-message" (animationend)="onAnimationEnd()">{{item}}</div>
+                }
+            </div> -->
+            <app-errors [errorContainer]="errorContainer" (changeEmitter)="onAnimationEnd($event)"></app-errors>
+        }
+    </div>
     <h1 class="header">All listed cars</h1>
+
+    @if (loading) {
+      <app-loader></app-loader>
+    }
+
     <div class="wrapper">
-    <div class="card">
-        <img src="https://images.hgmsites.net/hug/2010-bmw-3-series-4-door-sedan-328i-rwd-angular-front-exterior-view_100237108_h.jpg" alt="Car Image" class= "car-image-url">
-        <h1 class="blk-clr">car.carBrand</h1>
-        <h3 class="blk-clr">Model: car.carModel</h3>
-        <h3 class="blk-clr">Horse Power: car.horsePower</h3>
-        <h3 class="blk-clr">Created date: date</h3>
-        @if (isLoggedIn) {
-        <a routerLink='/catalog/1'><button class="button">Details</button></a>
+      @if (cars.length > 0) {
+        @for (item of cars; track $index) {
+          <app-catalog-single-item [car]="item" [loggedIn]="isLoggedIn"></app-catalog-single-item>
         }
-      </div>
-    <div class="card">
-        <img src="https://images.hgmsites.net/hug/2010-bmw-3-series-4-door-sedan-328i-rwd-angular-front-exterior-view_100237108_h.jpg" alt="Car Image" class= "car-image-url">
-        <h1 class="blk-clr">car.carBrand</h1>
-        <h3 class="blk-clr">Model: car.carModel</h3>
-        <h3 class="blk-clr">Horse Power: car.horsePower</h3>
-        <h3 class="blk-clr">Created date: date</h3>
-        @if (isLoggedIn) {
-        <a routerLink='/catalog/1'><button class="button">Details</button></a>
-        }
-      </div>
-    <div class="card">
-        <img src="https://images.hgmsites.net/hug/2010-bmw-3-series-4-door-sedan-328i-rwd-angular-front-exterior-view_100237108_h.jpg" alt="Car Image" class= "car-image-url">
-        <h1 class="blk-clr">car.carBrand</h1>
-        <h3 class="blk-clr">Model: car.carModel</h3>
-        <h3 class="blk-clr">Horse Power: car.horsePower</h3>
-        <h3 class="blk-clr">Created date: date</h3>
-        @if (isLoggedIn) {
-        <a routerLink='/catalog/1'><button class="button">Details</button></a>
-        }
-      </div>
+      }
     </div>
 </main>

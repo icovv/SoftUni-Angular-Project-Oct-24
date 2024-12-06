@@ -1,0 +1,9 @@
+<div class="card">
+    <img src={{car?.imageURL}} alt="Car Image" class= "car-image-url">
+    <h1 class="blk-clr">{{car?.carBrand}}</h1>
+    <h3 class="blk-clr">Model: {{car?.carModel}}</h3>
+    <h3 class="blk-clr">Horse Power: {{car?.horsePower}}</h3>
+    @if (loggedIn) {
+    <a routerLink='/catalog/1'><button class="button">Details</button></a>
+    }
+  </div>
