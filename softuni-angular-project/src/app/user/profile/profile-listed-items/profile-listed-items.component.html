@@ -1,0 +1,6 @@
+<div class="product">
+    <h3 class="h3">{{car?.carBrand}}</h3>
+    <p class="p"><strong>Model:</strong> {{car?.carModel}}</p>
+    <p class="p"><strong>Color:</strong> {{car?.color}}</p>
+    <a [routerLink]="'/catalog/' + car?._id"><button class="details-btn">Details</button></a>
+</div>

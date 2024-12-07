@@ -40,10 +40,8 @@ export class CatalogComponent implements OnInit {
     this.api.getAllCars().subscribe({
       next: (data) => {
         this.cars = data;
-        console.log(this.cars)
       },
       error: (err) => {
-        console.log(`this is your err ${err}`)
         this.errorContainer?.push(err);
       }
     })

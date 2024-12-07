@@ -1,33 +1,46 @@
 <main class="main">
+
+    <div class="error-container">
+        @if (errorContainer.length > 0) {
+            <!-- <div class="error-container">
+                @for (item of errorContainer; track $index) {
+                    <div class="error-message" (animationend)="onAnimationEnd()">{{item}}</div>
+                }
+            </div> -->
+            <app-errors [errorContainer]="errorContainer" (changeEmitter)="onAnimationEnd($event)"></app-errors>
+        }
+    </div>
+    @if (isLoading) {
+        <app-loader></app-loader>
+    } @else {
     <div class="profile-container">
         <div class="profile-info">
             <div class="profile-picture">
                 <img src="profile-circle-icon-2048x2048-cqe5466q.png"  alt="Profile Picture">
             </div>
             <div class="profile-email">
-                <span class="blk-clr"><strong>Email: email</strong></span>
-                <span class="blk-clr"><strong>User since: date</strong></span>
+                <span class="blk-clr"><strong>Email: {{user?.email}}</strong></span>
+                <span class="blk-clr"><strong>User since: {{user?._createdOn | date: "dd-mm-yyyy"}}</strong></span>
             </div>
         </div>
     </div>
     <div class="products-container">
         <section class="product-section">
             <h2>Listed Cars</h2>
-            <div class="product">
-                <h3 class="h3">car.carBrand</h3>
-                <p class="p"><strong>Model:</strong> car.carModel</p>
-                <p class="p"><strong>Color:</strong> car.color</p>
-                <a routerLink="/catalog/1"><button class="details-btn">Details</button></a>
-            </div>
+            @if(listedItems.length > 0){
+                @for (item of listedItems; track $index) {
+                <app-profile-listed-items [car]="item"></app-profile-listed-items>
+                }
+            }
         </section>
         <section class="product-section">
             <h2>Liked Cars</h2>
-            <div class="product">
-                <h3 class='h3'>car.carBrand</h3>
-                <p class='p'><strong>Model:</strong> car.carModel</p>
-                <p class='p'><strong>Color:</strong> car.color</p>
-                <a routerLink='/catalog/1'><button class="details-btn">Details</button></a>
-            </div>
+            @if (likedItems.length > 0) {
+                @for (item of likedItems; track $index) {
+                    <app-profile-liked-items [car]="item"></app-profile-liked-items>
+                }
+            }
         </section>
     </div>
+    }
 </main>

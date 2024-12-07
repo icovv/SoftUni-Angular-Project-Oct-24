@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Cars } from '../types/cars';
+import { empty } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,4 +17,5 @@ export class ApiService {
   getAllCars(){
     return this.http.get<Cars[]>('api/data/cars',{headers:this.headers})
   }
+
 }

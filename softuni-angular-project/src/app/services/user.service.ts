@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject, Subscription, tap } from 'rxjs';
 import { User, UserForApi } from '../types/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -10,7 +10,6 @@ export class UserService {
   private user$$ = new BehaviorSubject<UserForApi | null>(null);
   public user$ = this.user$$.asObservable();
 
-
   user: UserForApi | null = null; 
   userSubscription: Subscription | null = null
 
@@ -18,6 +17,7 @@ export class UserService {
   headers: HttpHeaders = new HttpHeaders({
     'Content-Type' : 'application/json'
   })
+
   get isLogged(): boolean {
     return !!this.user;
   }

@@ -6,5 +6,6 @@ export interface UserForApi{
     accessToken:string,
     email: string,
     username: string,
-    _id: string
+    _id: string,
+    _createdOn:number,
 }
