@@ -4,7 +4,9 @@
             <ul class="Menu">
                 <li><a routerLink="/">Home</a></li>
                 <li><a routerLink="/catalog">Catalog</a></li>
+                @if (isUserLoged) {
                 <li><a routerLink="/list">List Your Car</a></li>
+                }
                 <li><a routerLink="/search">Search</a></li>
                 <li><a routerLink='/contacts'>Contacts</a></li>
                 @if (!isUserLoged) {
