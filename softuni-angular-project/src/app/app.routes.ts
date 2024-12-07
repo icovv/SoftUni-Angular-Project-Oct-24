@@ -20,7 +20,7 @@ export const routes: Routes = [
         {path: '', component: CatalogComponent},
         {path: ':carId', 
         component: DetailsComponent,
-        canActivate:[authGuard]},
+        }
     ]},
     {path: 'edit/:carId', component:EditComponent, canActivate:[authGuard]},
     {path: 'list', component: ListYourCarComponent},

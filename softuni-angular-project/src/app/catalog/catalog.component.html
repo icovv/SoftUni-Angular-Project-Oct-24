@@ -18,7 +18,7 @@
     <div class="wrapper">
       @if (cars.length > 0) {
         @for (item of cars; track $index) {
-          <app-catalog-single-item [car]="item" [loggedIn]="isLoggedIn"></app-catalog-single-item>
+          <app-catalog-single-item [car]="item" ></app-catalog-single-item>
         }
       }
     </div>

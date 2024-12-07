@@ -1,7 +1,12 @@
 <main class="main">
+    <div class="error-container">
+        @if (errorContainer && errorContainer.length > 0) {
+            <app-errors [errorContainer]="errorContainer" (changeEmitter)="onAnimationEnd($event)"></app-errors>
+        }
+        </div>
     <div class="product-details">
         <div class="image-container">
-            <img src='https://images.hgmsites.net/hug/2010-bmw-3-series-4-door-sedan-328i-rwd-angular-front-exterior-view_100237108_h.jpg' alt="Car Image">
+            <img src={{car?.imageURL}} alt="Car Image">
         </div>
         <div class="details-content">
             <h2><strong class="gry-clr">{{car?.carBrand}}</strong> </h2>
@@ -13,12 +18,17 @@
             <p class="blk-clr"><strong>Color: </strong> {{car?.color}}</p>
             <p class="blk-clr"><strong>Description:</strong> {{car?.description}}</p>
             <div class="buttons">
+                    @if (user?._id) {
                     @if (car?._ownerId == user?._id) {
                     <a routerLink="/edit/1"><button class="edit-btn">Edit</button></a>
-                    <button class="delete-btn">Delete</button>
+                    <button class="delete-btn" (click)="deleteItem()">Delete</button>
                     } @else {
-                    <button class="like-btn" >Unlike</button>
-                    <button class="like-btn">Like</button>
+                        @if (car?.likes?.includes(user?._id!)) {
+                        <button class="like-btn" (click)="DislikeItem()" >Unlike</button>
+                        } @else {
+                        <button class="like-btn" (click)="likeItem()">Like</button>
+                    }
+                    }
                     }
                 </div>
                 <p class="gry-clr mrgn-top"> Current Number of Likes: {{car?.likes?.length}} </p>

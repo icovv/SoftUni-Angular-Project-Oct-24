@@ -1,6 +1,6 @@
 import { FormControl, FormGroup, NgForm } from "@angular/forms";
 
-export function errorHandlerValidator(form: FormGroup):string[] | null{
+export function errorHandlerValidator(form: FormGroup):string[]{
     let errors = [];
     let brandErrors = form.get('brand')?.errors;
     let yearErrors = form.get('year')?.errors;
@@ -68,8 +68,5 @@ export function errorHandlerValidator(form: FormGroup):string[] | null{
         errors.push("The description is too short!");
         form.get('description')?.setValue(``);
     }
-    if(errors.length > 0){
-        return errors;
-    }
-    return null;
+    return errors;
 }

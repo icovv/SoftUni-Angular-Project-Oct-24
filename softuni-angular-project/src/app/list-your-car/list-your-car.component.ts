@@ -13,7 +13,7 @@ import { ErrorsComponent } from '../core/errors/errors.component';
   styleUrl: './list-your-car.component.css'
 })
 export class ListYourCarComponent {
-  errorContainer:string[] | null = [];
+  errorContainer:string[] = [];
   form = new FormGroup({
     brand: new FormControl("",[Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]),
     year: new FormControl("",[Validators.required, Validators.pattern(/\d+/), yearValidator()]),
@@ -34,6 +34,9 @@ export class ListYourCarComponent {
   submit(){
 
     this.errorContainer = errorHandlerValidator(this.form);
-    console.log(this.errorContainer)
+    if (this.errorContainer?.length! >  0){
+      return;
+    } 
+    
   }
 }
