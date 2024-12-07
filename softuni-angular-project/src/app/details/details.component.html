@@ -13,11 +13,14 @@
             <p class="blk-clr"><strong>Color: </strong> {{car?.color}}</p>
             <p class="blk-clr"><strong>Description:</strong> {{car?.description}}</p>
             <div class="buttons">
+                    @if (car?._ownerId == user?._id) {
                     <a routerLink="/edit/1"><button class="edit-btn">Edit</button></a>
                     <button class="delete-btn">Delete</button>
+                    } @else {
                     <button class="like-btn" >Unlike</button>
                     <button class="like-btn">Like</button>
-            </div>
+                    }
+                </div>
                 <p class="gry-clr mrgn-top"> Current Number of Likes: {{car?.likes?.length}} </p>
         </div>
     </div>

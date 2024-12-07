@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Cars } from '../types/cars';
 import { ApiService } from '../services/api.service';
+import { UserService } from '../services/user.service';
+import { UserForApi } from '../types/user';
 
 @Component({
   selector: 'app-details',
@@ -12,8 +14,10 @@ import { ApiService } from '../services/api.service';
 })
 export class DetailsComponent implements OnInit {
   car: Cars | null = null;
-
-  constructor(private activatedRoute: ActivatedRoute, private api: ApiService, private router: Router){
+  get user():UserForApi | null {
+    return this.userService.user;
+  }
+  constructor(private activatedRoute: ActivatedRoute, private api: ApiService, private router: Router, private userService: UserService){
 
   }
 
@@ -23,7 +27,6 @@ export class DetailsComponent implements OnInit {
     this.api.getSingleCar(carID).subscribe({
       next: (data) => {
         this.car = data;
-        console.log(this.car);
       },
       error: (err) => {
         this.router.navigate(['/404'])
