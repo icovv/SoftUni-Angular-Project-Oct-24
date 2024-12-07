@@ -18,4 +18,7 @@ export class ApiService {
     return this.http.get<Cars[]>('api/data/cars',{headers:this.headers})
   }
 
+  getSingleCar(carID:string){
+    return this.http.get<Cars>(`api/data/cars/${carID}`, {headers:this.headers});
+  }
 }

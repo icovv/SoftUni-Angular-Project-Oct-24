@@ -17,10 +17,13 @@ export const appInterceptorInterceptor: HttpInterceptorFn = (req, next) => {
         err.message = "The server is not responding. Please try again later!"
       }
       if(err.status == 403){
-        err.message = "Forbidden!"
+        err.message = "Forbidden or no account in the database!"
       }
       if(err.status == 409){
         err.message = "Conflict has occured!"
+      }
+      if(err.status == 404){
+        err.message = "Not Found"
       }
       return throwError(() => err.message) 
     })
