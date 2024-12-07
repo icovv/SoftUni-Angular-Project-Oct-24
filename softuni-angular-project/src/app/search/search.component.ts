@@ -18,16 +18,13 @@ import { LoaderComponent } from '../core/loader/loader.component';
 })
 export class SearchComponent implements OnInit{
   errorContainer:string[] = [];
+  loading: boolean = true;
   form = new FormGroup({
     search: new FormControl('',[]),
     dropdown: new FormControl('',[Validators.required])
   },{
     validators:searchValidator()
   })
-
-  get loading(): boolean{
-    return this.cars.length <= 0 ? true : false
-  }
 
   cars:Cars[] = [];
   
@@ -43,10 +40,10 @@ export class SearchComponent implements OnInit{
     this.api.getAllCars().subscribe({
       next: (data) => {
         this.cars = data;
-        console.log(this.cars)
+        this.loading = false;
       },
       error: (err) => {
-        console.log(`this is your err ${err}`)
+        this.loading = true;
         this.errorContainer?.push(err);
       }
     })
@@ -61,12 +58,55 @@ export class SearchComponent implements OnInit{
 }
   
   submit(){
+    if(this.form?.errors?.['isInvalid']){
     this.errorContainer.push(this.form?.errors?.['isInvalid'])
-    console.log(this.errorContainer)
+    return
+    }
+    
+    this.api.getAllCars().subscribe({
+      next: (data) => {
+          this.cars = [];
+          let searchParam = this.form.get('search')?.value
+          if (this.form.get('dropdown')?.value == `carModel` || this.form.get('dropdown')?.value == 'carBrand'){
+            if (searchParam == ''){
+              return;
+            }
+            searchParam = searchParam!.toLowerCase();
+          }
+          if (searchParam == ``){
+              return data;
+          } else if (this.form.get('dropdown')?.value == `carModel`){
+              this.cars = data.filter(car => car.carModel.toLowerCase().includes(searchParam!.toLowerCase()))
+          } else if (this.form.get('dropdown')?.value == `carBrand`){
+              this.cars = data.filter(car => car.carBrand.toLowerCase().includes(searchParam!.toLowerCase()))
+          } else if (this.form.get('dropdown')?.value == `horsePowerMore`){
+              this.cars = data.filter(car => car.horsePower >= Number(searchParam))
+          } else if (this.form.get('dropdown')?.value == `horsePowerLess`){
+              this.cars = data.filter(car => car.horsePower <= Number(searchParam))
+          }
+          
+          return this.cars;
+      }, 
+      error: (err) => {
+        this.loading = true;
+        this.errorContainer.push(err)
+      }
+
+    })
   }
 
   clear(){
     this.form.get('search')?.setValue('');
     this.form.get('dropdown')?.setValue('');
+    this.api.getAllCars().subscribe({
+      next: (data) => {
+        this.cars = data;
+        this.loading = false;
+      },
+      error: (err) => {
+        this.loading = true;
+        this.errorContainer?.push(err);
+      }
+    })
   }
 }
