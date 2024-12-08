@@ -60,14 +60,12 @@ export class ListYourCarComponent {
       "description" : this.form.get('description')?.value?.trim()!,
       "imageURL" : this.form.get('image')?.value?.trim()!,
     }
-    console.log(data);
     this.api.createCar(data).subscribe({
       next: (item) => {
         this.router.navigate(['/catalog'])
       },
       error: (err) => {
         this.errorContainer.push(err);
-        console.log(err);
       }
     })
     

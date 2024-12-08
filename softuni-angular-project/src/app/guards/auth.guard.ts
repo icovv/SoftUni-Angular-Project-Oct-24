@@ -8,13 +8,11 @@ export const authGuard: CanActivateFn = (route, state) => {
   let router = inject(Router);
 
   if (userService.isLogged && (state.url == '/register' || state.url == '/login')){
-    console.log('register page || login page');
     router.navigate(['/home'])
     return false;
   }
 
   if (!userService.isLogged && (state.url == '/register' || state.url == '/login')){
-    console.log('register or login page go ahead');
     return true;
   }
 
