@@ -17,7 +17,7 @@ export function searchValidator():ValidatorFn{
             return {"isInvalid" : "Please provide valid car model!"};
         }
         if (Number(search) && dropdown == `carBrand`){
-            return {"isInvalid" : "Please provide valid car model!"};
+            return {"isInvalid" : "Please provide valid car brand!"};
         }
         return null
     }

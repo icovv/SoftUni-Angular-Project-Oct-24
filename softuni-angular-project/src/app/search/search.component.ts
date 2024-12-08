@@ -60,6 +60,7 @@ export class SearchComponent implements OnInit{
   submit(){
     if(this.form?.errors?.['isInvalid']){
     this.errorContainer.push(this.form?.errors?.['isInvalid'])
+    this.form.get('search')?.setValue('');
     return
     }
     

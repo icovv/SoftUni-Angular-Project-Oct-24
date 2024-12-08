@@ -5,11 +5,12 @@ import { ApiService } from '../services/api.service';
 import { UserService } from '../services/user.service';
 import { UserForApi } from '../types/user';
 import { ErrorsComponent } from '../core/errors/errors.component';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [RouterLink, ErrorsComponent],
+  imports: [RouterLink, ErrorsComponent, DatePipe],
   templateUrl: './details.component.html',
   styleUrl: './details.component.css'
 })

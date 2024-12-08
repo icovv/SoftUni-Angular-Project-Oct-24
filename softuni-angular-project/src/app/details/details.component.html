@@ -17,6 +17,7 @@
             <p class="blk-clr"><strong>Fuel: </strong> {{car?.fuelType}}</p>
             <p class="blk-clr"><strong>Color: </strong> {{car?.color}}</p>
             <p class="blk-clr"><strong>Description:</strong> {{car?.description}}</p>
+            <p class="blk-clr"><strong>Listed on:</strong> {{car?._createdOn | date: "dd-MM-yyyy, hh:mm"}}</p>
             <div class="buttons">
                     @if (user?._id) {
                     @if (car?._ownerId == user?._id) {
