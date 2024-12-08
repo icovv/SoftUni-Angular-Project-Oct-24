@@ -52,7 +52,7 @@ The three cars are:<br/>
 <br/>
 If you want to run the project, you have package.json file in the main client folder.<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Open the folder in your terminal, then type **"npm install"**<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Open the folder (softuni-angular-project) in your terminal, then type **"npm install"**<br/>
 <br/>
 In order to start the SPA Service you have to follow these two steps -> <br/><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Open the server folder in your terminal, then type **"node server.js"** <br/>
