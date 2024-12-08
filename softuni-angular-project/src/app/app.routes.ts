@@ -22,12 +22,14 @@ export const routes: Routes = [
         component: DetailsComponent,
         }
     ]},
-    {path: 'edit/:carId', component:EditComponent, canActivate:[authGuard]},
-    {path: 'list', component: ListYourCarComponent},
+    {path: 'edit/:carId', canActivate:[authGuard], loadComponent: ()  =>
+        import('../app/edit/edit.component').then((c) => c.EditComponent) 
+    },
+    {path: 'list', loadComponent: () => import('../app/list-your-car/list-your-car.component').then((c) => c.ListYourCarComponent)},
     {path: 'search', component: SearchComponent},
     {path: 'contacts', component:ContactComponent},
     
-    {path: 'profile', component: ProfileComponent, canActivate:[authGuard]},
+    {path: 'profile', canActivate:[authGuard], loadComponent: () => import('../app/user/profile/profile.component').then((c) => c.ProfileComponent )},
     {path: 'register', component: RegisterComponent, canActivate:[authGuard]},
     {path: 'login', component: LoginComponent, canActivate:[authGuard]},
 
