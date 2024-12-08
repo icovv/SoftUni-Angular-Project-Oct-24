@@ -45,4 +45,10 @@ export class ApiService {
       let newHeader = this.headers.append('X-Authorization',`${userToken}`);
       return this.http.delete<Cars>(`api/data/cars/${carID}`,{headers:newHeader});
     }
+    createCar(data:Cars){
+      let userData:string= localStorage.getItem('userData')!;
+      let userToken= JSON.parse(userData).accessToken;
+      let newHeader = this.headers.append('X-Authorization',`${userToken}`);
+      return this.http.post<Cars>('api/data/cars',data,{headers:newHeader});
+    }
   }

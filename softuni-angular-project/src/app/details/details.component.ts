@@ -66,13 +66,17 @@ export class DetailsComponent implements OnInit {
      })
   }
   deleteItem(){
-    this.api.deleteCar(this.car?._id!).subscribe({
-      next:(data) =>{
-        this.router.navigate(['/catalog']);
-      },
-      error:(err) => {
-        this.errorContainer.push(err);
-      }
-    })
+    let confirmationPopUp = window.confirm('Are you sure you want to delete this car?')
+    if(confirmationPopUp){
+      this.api.deleteCar(this.car?._id!).subscribe({
+        next:(data) =>{
+          this.router.navigate(['/catalog']);
+        },
+        error:(err) => {
+          this.errorContainer.push(err);
+        }
+      })
+    }
+
   }
 }
