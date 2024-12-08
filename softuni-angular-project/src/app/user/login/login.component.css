@@ -113,15 +113,3 @@ input[type="submit"]:hover{
     flex-direction: column;
     gap: 0.5em;
   }
-
-    
-  .error-container {
-    position: fixed;
-    top: 3em;
-    right: 67em;
-    width: 300px;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }

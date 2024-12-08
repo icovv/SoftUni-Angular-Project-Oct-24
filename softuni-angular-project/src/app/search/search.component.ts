@@ -70,7 +70,8 @@ export class SearchComponent implements OnInit{
           let searchParam = this.form.get('search')?.value
           if (this.form.get('dropdown')?.value == `carModel` || this.form.get('dropdown')?.value == 'carBrand'){
             if (searchParam == ''){
-              return;
+              this.cars = data
+              return this.cars;
             }
             searchParam = searchParam!.toLowerCase();
           }

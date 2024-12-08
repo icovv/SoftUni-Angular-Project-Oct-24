@@ -10,7 +10,7 @@ export function searchValidator():ValidatorFn{
         if (!Number(search) && dropdown == `horsePowerLess`){
             return {"isInvalid" : "Please provide valid horse power!"};
         }
-        if (!Number(search) && dropdown == `horsePowerMore`){
+        if ((!Number(search) && search.toString() !== "0") && dropdown == `horsePowerMore`){
             return {"isInvalid" : "Please provide valid horse power!"};
         }
         if (Number(search) && dropdown == `carModel`){
