@@ -20,7 +20,7 @@
             <div class="buttons">
                     @if (user?._id) {
                     @if (car?._ownerId == user?._id) {
-                    <a routerLink="/edit/1"><button class="edit-btn">Edit</button></a>
+                    <a [routerLink]="'/edit/' + car?._id"><button class="edit-btn">Edit</button></a>
                     <button class="delete-btn" (click)="deleteItem()">Delete</button>
                     } @else {
                         @if (car?.likes?.includes(user?._id!)) {

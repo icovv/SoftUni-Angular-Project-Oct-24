@@ -51,4 +51,13 @@ export class ApiService {
       let newHeader = this.headers.append('X-Authorization',`${userToken}`);
       return this.http.post<Cars>('api/data/cars',data,{headers:newHeader});
     }
+    editCar(carID:string, car:Cars){
+      let userData:string= localStorage.getItem('userData')!;
+      let userToken= JSON.parse(userData).accessToken;
+      let newHeader = this.headers.append('X-Authorization',`${userToken}`);
+      return this.getSingleCar(carID).pipe(switchMap((data) => {
+          return this.http.put<Cars>(`api/data/cars/${carID}`,car,{headers:newHeader})
+        })
+      )
+      }
   }
