@@ -32,3 +32,14 @@ header .Menu li a
   
 header .Menu li:hover a
 { color: #DFD4C8; }
+
+.error-container {
+    position: fixed;
+    top: 3em;
+    right: 67em;
+    width: 300px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }

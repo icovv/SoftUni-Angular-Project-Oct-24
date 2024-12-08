@@ -10,5 +10,4 @@ import { RouterLink } from '@angular/router';
 })
 export class SearchSingleItemComponent {
   @Input() car:Cars | null = null;
-  @Input() loggedIn:boolean = false;
 }

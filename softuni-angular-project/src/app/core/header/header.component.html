@@ -19,4 +19,9 @@
                 }
             </ul>
     </div>
+    <div class="error-container">
+        @if (errorContainer && errorContainer.length > 0) {
+            <app-errors [errorContainer]="errorContainer" (changeEmitter)="onAnimationEnd($event)"></app-errors>
+        }
+        </div>
 </header>

@@ -3,5 +3,6 @@
     <h1 class="blk-clr">{{car?.carBrand}}</h1>
     <h3 class="blk-clr">Model: {{car?.carModel}}</h3>
     <h3 class="blk-clr">Horse Power: {{car?.horsePower}}</h3>
+    <h3 class="blk-clr">Listed on: {{car?._createdOn | date: 'dd-mm-yyyy'}}</h3>
     <a [routerLink]="'/catalog/' + car?._id"><button class="button">Details</button></a>
   </div>
