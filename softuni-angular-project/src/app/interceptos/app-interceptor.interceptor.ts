@@ -1,10 +1,12 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export const appInterceptorInterceptor: HttpInterceptorFn = (req, next) => {
+  let URL = environment.APIURL;
   if(req.url.startsWith('api')){
     req = req.clone({
-      url: req.url.replace('api','http://localhost:3030')
+      url: req.url.replace('api',URL)
     })
   }
   return next(req).pipe(
