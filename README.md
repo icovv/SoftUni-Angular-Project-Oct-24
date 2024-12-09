@@ -50,7 +50,7 @@ The three cars are:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - BMW with owner peter@abv.bg and 0 likes <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Mercedes with owner george@abv.bg and 1 like from peter@abv.bg <br/>
 <br/>
-If you want to run the project, you have package.json file in the main client folder.<br/>
+If you want to run the project locally , you have package.json file in the main client folder.<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Open the folder (softuni-angular-project) in your terminal, then type **"npm install"**<br/>
 <br/>
